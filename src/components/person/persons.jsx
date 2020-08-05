@@ -7,14 +7,6 @@ class Persons extends Component {
   };
 
   async componentDidMount() {
-    // let options = {
-    //   method: "get",
-    //   mode: "cors",
-    //   header: {
-    //     Accept: "application/json",
-    //     "Content-Type": "application/json;charset=UTF-8",
-    //   },
-    // };
     fetch(this.props.ServerUrl + "/api/test-view")
       .then((rest) => rest.json())
       .then((persons) => {
@@ -29,14 +21,31 @@ class Persons extends Component {
         return (
           <Person
             key={person.id}
+            photo={person.photo}
             name={person.name}
             last_name={person.last_name}
+            email={person.email}
+            telephone={person.telephone}
+            cargo={person.cargo}
           />
         );
       });
-      return <div>{persons}</div>;
+      
     }
-    return <React.Fragment>{persons}</React.Fragment>;
+    return (
+      <section className="section bg-light block-11">
+        <div className="container">
+          <div className="row justify-content-center mb-5">
+            <div className="col-md-8 text-center">
+              <h2 className=" heading mb-4">Personal</h2>
+            </div>
+          </div>
+          <div className="nonloop-block-11 owl-carousel">
+            <div>{persons}</div>;
+            </div>
+        </div>
+      </section>
+    );
   }
 }
 
