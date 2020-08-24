@@ -1,14 +1,16 @@
 import React from "react";
 import ReactDOM from "react-dom";
+// import { createStore } from 'redux';
+// import { Provider } from 'react-redux'
 // import "bootstrap/dist/css/bootstrap.min.css";
 
-import "react-bootstrap-carousel/dist/react-bootstrap-carousel.css";
-import "./styles/animate.css";
-// import './fonts/ionicons/css/ionicons.min.css'
-// import "./styles/bootstrap.css";
-import "./styles/style.css";
+// import "react-bootstrap-carousel/dist/react-bootstrap-carousel.css";
+// import "./styles/animate.css";
 import App from "./App";
 import * as serviceWorker from "./serviceWorker";
+// import reducer from "./store/reducer"
+
+// const store = createStore(reducer);
 
 ReactDOM.render(
   <React.StrictMode>

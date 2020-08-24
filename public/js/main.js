@@ -168,7 +168,7 @@
 							} else if ( effect === 'fadeInRight') {
 								el.addClass('fadeInRight element-animated');
 							} else {
-								el.addClass('fadeInUp element-animated');
+								el.addClass(' ');
 							}
 							el.removeClass('item-animate');
 						},  k * 100);
