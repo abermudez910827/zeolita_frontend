@@ -7,12 +7,15 @@ import { createStore, applyMiddleware, compose, combineReducers } from "redux";
 import App from "./App";
 import * as serviceWorker from "./serviceWorker";
 import personsReducer from "./store/reducers/person";
+import authReducer from "./store/reducers/auth";
 
 const rootReducer = combineReducers({
   persons: personsReducer,
+  auth: authReducer,
 });
 
-const store = createStore(rootReducer,
+const store = createStore(
+  rootReducer
   // applyMiddleware(thunk)
 );
 

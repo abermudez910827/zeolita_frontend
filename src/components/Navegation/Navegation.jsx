@@ -1,5 +1,5 @@
 import React, { useState } from "react";
-import  NavItem  from "./NavItem/NavItem";
+import NavItem from "./NavItem/NavItem";
 import { Link } from "react-router-dom";
 
 const nav = React.memo((props) => {
@@ -33,21 +33,22 @@ const nav = React.memo((props) => {
               <NavItem link="/" exact>
                 Inicio
               </NavItem>
-              <NavItem link="/about" exact>
+              <NavItem link="/about" >
                 Acerca de
               </NavItem>
-              <NavItem link="/projects" exact>
+              <NavItem link="/projects" >
                 Proyectos
               </NavItem>
-              <NavItem link="/services" exact>
+              <NavItem link="/services" >
                 Servicios
               </NavItem>
-              <NavItem link="/contact" exact>
+              <NavItem link="/contact" >
                 Contacto
               </NavItem>
-
             </ul>
-            <div className="navbar-nav ml-auto"></div>
+            <div className="navbar-nav ml-auto">
+              <NavItem link="/login">Admin</NavItem>
+            </div>
           </div>
         </div>
       </nav>

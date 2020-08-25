@@ -4,6 +4,8 @@ import Layout from "./hoc/Layout/Layout";
 import Index from "./components/Index/Index";
 import Loader from "./components/Loader/Loader";
 
+import Auth from "./containers/Auth/Auth";
+
 const About = React.lazy(() => import("./containers/About/About"));
 const Services = React.lazy(() => import("./components/Servicios/Servicios"));
 const Contact = React.lazy(() => import("./containers/Contact/Contact"));
@@ -16,6 +18,7 @@ class App extends Component {
     return (
       <Layout>
         <Switch>
+          <Route path="/login" component={Auth} />
           <Route
             path="/services"
             render={() => (
