@@ -7,6 +7,8 @@ const reducer = (state = initialState, action) => {
   switch (action.type) {
     case actionTypes.ADD_PERSON:
       break;
+    default:
+      return state;
   }
 };
 

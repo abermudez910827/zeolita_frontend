@@ -156,9 +156,7 @@ class Contact extends Component {
   };
 
   render() {
-    const styleImg = {
-      backgroundImage: "url('images/industrial_hero_1.jpg')",
-    };
+   
 
     const formElementsArray = [];
     for (let key in this.state.contactForm) {

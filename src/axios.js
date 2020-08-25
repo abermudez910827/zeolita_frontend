@@ -10,7 +10,7 @@ instance.defaults.headers.common['Authorization'] = 'AUTH TOKEN';
 instance.defaults.headers.post['Content-Type'] = 'application/json';
 
 instance.interceptors.request.use(request => {
-    console.log(request);
+    // console.log(request);
     // Edit request config
     return request;
 }, error => {

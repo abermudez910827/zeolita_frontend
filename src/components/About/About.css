@@ -1,0 +1,57 @@
+.block-99 {
+  background: #fff;
+  max-width: 700px;
+  margin-left: auto;
+  margin-right: auto;
+  padding: 40px;
+}
+
+.block-99 .vcard .image img {
+  width: 200px;
+  height: 200px;
+  border-radius: 50%;
+  border: 1p solid #a6a6a6;
+  box-shadow: 0 0 2px 1px rgb(0, 0, 0 ,0.5);
+}
+@media only screen and (max-width:900px) {
+  .block-99 .vcard .image img {
+    width: 400px;
+    height: 400px;
+  }
+}
+
+@media only screen and (max-width:700px) {
+  .block-99 .vcard .image img {
+    width: 47%;
+    height: 200px;
+
+  }
+}
+
+@media only screen and (max-width:500px) {
+  .block-99 .vcard .image img {
+    width: 47%;
+    height: 200px;
+
+  }
+}
+.block-99 .vcard .name-text .heading {
+  line-height: 1.5;
+  margin: 0;
+  padding: 0;
+  font-size: 18px;
+  font-weight: 300;
+}
+.block-99 .vcard .name-text .meta {
+  color: #a6a6a6;
+  display: block;
+}
+.block-99 .text blockquote {
+  padding: 0;
+  margin-bottom: 0;
+  border: none !important;
+  font-size: 16px;
+}
+.block-99 .text blockquote p:last-child {
+  margin-bottom: 0;
+}

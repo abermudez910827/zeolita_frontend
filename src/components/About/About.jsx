@@ -1,5 +1,5 @@
 import React from "react";
-
+import './About.css'
 import InnerPage from "../UI/innerPage/innerPage";
 import Section from "../UI/section/section";
 import Block from "../UI/section/block/block";
