@@ -1,10 +1,13 @@
 import React, { Component } from "react";
-import Section from "../../components/UI/section/section";
+// import { divWithClassName  } from "react-bootstrap";
+import Section from "../../components/UI/section/Section";
 import InnerPage from "../../components/UI/innerPage/innerPage";
 import Loader from "../../components/Loader/Loader";
 import Input from "../../components/UI/Input/Input";
 import Button from "../../components/UI/Button/Button";
-import axios from 'axios'
+import Container from "../../components/UI/Container/Container";
+import Row from "../../components/UI/Row/Row"
+import axios from "axios";
 
 class Contact extends Component {
   state = {
@@ -36,7 +39,7 @@ class Contact extends Component {
         validation: {
           required: true,
           minLength: 8,
-          maxLength:8,
+          maxLength: 8,
           isNumeric: true,
         },
         valid: false,
@@ -101,7 +104,6 @@ class Contact extends Component {
       });
   };
 
-
   checkValidity(value, rules) {
     let isValid = true;
     if (!rules) {
@@ -152,12 +154,13 @@ class Contact extends Component {
     for (let inputIdentifier in updatedcontactForm) {
       formIsValid = updatedcontactForm[inputIdentifier].valid && formIsValid;
     }
-    this.setState({ contactForm: updatedcontactForm, formIsValid: formIsValid });
+    this.setState({
+      contactForm: updatedcontactForm,
+      formIsValid: formIsValid,
+    });
   };
 
   render() {
-   
-
     const formElementsArray = [];
     for (let key in this.state.contactForm) {
       formElementsArray.push({
@@ -168,7 +171,7 @@ class Contact extends Component {
     let form = (
       <form onSubmit={this.sendHandler}>
         {formElementsArray.map((formElement) => (
-          <div key={formElement.id} className="row">
+          <Row key={formElement.id} >
             <Input
               id={formElement.id}
               label={formElement.config.label}
@@ -183,7 +186,7 @@ class Contact extends Component {
                 this.inputChangedHandler(event, formElement.id)
               }
             />
-          </div>
+          </Row>
         ))}
         <Button
           classN="btn btn-primary px-3 py-3"
@@ -194,7 +197,7 @@ class Contact extends Component {
       </form>
     );
     if (this.state.loading) {
-      form = <Loader embebed/>;
+      form = <Loader embebed />;
     }
 
     return (
@@ -204,32 +207,32 @@ class Contact extends Component {
           description="dejenos su opinion"
           img="url('images/industrial_hero_3.jpg')"
         />
-        <Section>
-          <div className="row">
-            <div className="col-md-6 mb-5 order-2">
-              {form}
-            </div>
-            <div className="col-md-6 order-2 mb-5">
-              <div className="row justify-content-right">
-                <div className="col-md-8 mx-auto contact-form-contact-info">
-                  <p className="d-flex">
-                    <span className="ion-ios-location icon mr-5"></span>
-                    <span>34 Street Name, City Name Here, United States</span>
-                  </p>
+        <Section section>
+          <Container>
+            <Row>
+              <div className="col-md-6 mb-5 order-2">{form}</div>
+              <div className="col-md-6 order-2 mb-5">
+                <div className="row justify-content-right">
+                  <div className="col-md-8 mx-auto contact-form-contact-info">
+                    <p className="d-flex">
+                      <span className="ion-ios-location icon mr-5"></span>
+                      <span>34 Street Name, City Name Here, United States</span>
+                    </p>
 
-                  <p className="d-flex">
-                    <span className="ion-ios-telephone icon mr-5"></span>
-                    <span>+1 242 4942 290</span>
-                  </p>
+                    <p className="d-flex">
+                      <span className="ion-ios-telephone icon mr-5"></span>
+                      <span>+1 242 4942 290</span>
+                    </p>
 
-                  <p className="d-flex">
-                    <span className="ion-android-mail icon mr-5"></span>
-                    <span>info@yourdomain.com</span>
-                  </p>
+                    <p className="d-flex">
+                      <span className="ion-android-mail icon mr-5"></span>
+                      <span>info@yourdomain.com</span>
+                    </p>
+                  </div>
                 </div>
               </div>
-            </div>
-          </div>
+            </Row>
+          </Container>
         </Section>
       </React.Fragment>
     );

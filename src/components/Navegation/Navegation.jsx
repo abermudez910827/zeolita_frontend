@@ -1,5 +1,6 @@
 import React, { useState } from "react";
-import NavItem from "./NavItem/NavItem";
+import  NavItem  from "./NavItem/NavItem";
+import { Link } from "react-router-dom";
 
 const nav = React.memo((props) => {
   const inputState = useState({ collapsedNav: false });
@@ -13,9 +14,9 @@ const nav = React.memo((props) => {
     <header role="banner">
       <nav className="navbar navbar-expand-lg navbar-dark bg-dark">
         <div className="container-fluid">
-          <a className="navbar-brand " href="index.html">
-            Industrial
-          </a>
+          <Link className="navbar-brand " to="/">
+            UEB Zeolita
+          </Link>
           <button
             className="navbar-toggler"
             type="button"

@@ -3,6 +3,7 @@ import Nav from "../../components/Navegation/Navegation";
 import Footer from "../../components/Footer/Footer";
 
 import "./style.css";
+// import "./Layout.css";
 import "../../fonts/ionicons/css/ionicons.min.css";
 import "./animate.css";
 

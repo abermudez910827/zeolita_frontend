@@ -1,17 +1,16 @@
 import React, { Component } from "react";
 import { connect } from "react-redux";
-import './About.css'
+import "./About.css";
 import InnerPage from "../../components/UI/innerPage/innerPage";
-import Section from "../../components/UI/section/section";
+import Section from "../../components/UI/section/Section";
 import Block from "../../components/UI/section/block/block";
 import Person from "../../components/Person/Person";
-import Loader from '../../components/Loader/Loader'
+import Loader from "../../components/Loader/Loader";
 import * as actions from "../../store/actions";
 
 class About extends Component {
-  
-  componentDidMount() { 
-    this.props.initPersons();
+  componentDidMount() {
+    // this.props.initPersons();
   }
 
   render() {
@@ -31,10 +30,14 @@ class About extends Component {
 
     if (this.props.errors) {
       persons = (
-        <div className="col-lg-12 ">
-          <h5 className="text-center text-danger">
-            Ocurrio un error al cargar los datos
-          </h5>
+        <div className="col-lg-12 text-center">
+          <h1>
+            <span
+              className="ion-sad-outline text-danger "
+              aria-hidden="true"
+            ></span>
+          </h1>
+          <h5 className="text-danger">Ocurrio un error al cargar los datos</h5>
         </div>
       );
     }
@@ -128,18 +131,18 @@ class About extends Component {
       </React.Fragment>
     );
   }
-};
+}
 
-const mapStateToProps = state => {
+const mapStateToProps = (state) => {
   return {
-    persons: state.perosns.persons,
-    loading: state.perosns.loading,
-    errors: state.perosns.errors
-  }
-}
-const mapDispatchToProps = dispatch => {
+    persons: state.persons.persons,
+    loading: state.persons.loading,
+    errors: state.persons.errors,
+  };
+};
+const mapDispatchToProps = (dispatch) => {
   return {
-   initPersons: () => dispatch(actions.initPersons),
- } 
-}
-export default connect(mapStateToProps,mapDispatchToProps)(About);
+    //  initPersons: () => dispatch(actions.initPersons),
+  };
+};
+export default connect(mapStateToProps, mapDispatchToProps)(About);

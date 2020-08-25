@@ -1,6 +1,6 @@
 import React from "react";
 import InnerPage from "../UI/innerPage/innerPage";
-import Section from '../UI/section/section'
+import Section from '../UI/section/Section'
 const styleImg = {
     backgroundImage: "url('images/industrial_hero_1.jpg')",
 };

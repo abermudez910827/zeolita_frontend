@@ -36,7 +36,7 @@ const footer = () => {
               Copyright &copy;
               <script>document.write(new Date().getFullYear());</script> Todos
               los derechos reservados |{" "}
-              <i className="fa fa-heart text-danger" aria-hidden="true"></i>
+              <i className="ion-heart text-danger" aria-hidden="true"></i>{" "}
               Creado por{" "}
               <a
                 href="mailto:abermudez10827@gmail.com"
