@@ -9,8 +9,9 @@ import Loader from "../../components/Loader/Loader";
 import * as actions from "../../store/actions";
 
 class About extends Component {
+
   componentDidMount() {
-    // this.props.initPersons();
+    this.props.initPersons();
   }
 
   render() {
@@ -142,7 +143,7 @@ const mapStateToProps = (state) => {
 };
 const mapDispatchToProps = (dispatch) => {
   return {
-    //  initPersons: () => dispatch(actions.initPersons),
+     initPersons: () => dispatch(actions.initPersons()),
   };
 };
 export default connect(mapStateToProps, mapDispatchToProps)(About);

@@ -5,6 +5,7 @@ import Index from "./components/Index/Index";
 import Loader from "./components/Loader/Loader";
 
 import Auth from "./containers/Auth/Auth";
+import Logout from "./containers/Auth/Logout/Logout";
 
 const About = React.lazy(() => import("./containers/About/About"));
 const Services = React.lazy(() => import("./components/Servicios/Servicios"));
@@ -19,6 +20,7 @@ class App extends Component {
       <Layout>
         <Switch>
           <Route path="/login" component={Auth} />
+          <Route path="/logout" component={Logout} />
           <Route
             path="/services"
             render={() => (

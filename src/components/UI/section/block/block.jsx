@@ -3,7 +3,7 @@ import React from "react";
 const block = (props) => {
   const classes = ["col-md-6 col-lg-4 element-animate"];
   const startAnimation = () => {
-    console.log("AnimationTrigger")
+    // console.log("AnimationTrigger")
     classes.push("fadeInUp element-animated");
    }
 

@@ -2,8 +2,8 @@ import React from "react";
 import ReactDOM from "react-dom";
 import { BrowserRouter } from "react-router-dom";
 import { Provider } from "react-redux";
-import { createStore, applyMiddleware, compose, combineReducers } from "redux";
-// import thunk from "redux-thunk";
+import { createStore, applyMiddleware, combineReducers } from "redux";
+import thunk from "redux-thunk";
 import App from "./App";
 import * as serviceWorker from "./serviceWorker";
 import personsReducer from "./store/reducers/person";
@@ -15,8 +15,8 @@ const rootReducer = combineReducers({
 });
 
 const store = createStore(
-  rootReducer
-  // applyMiddleware(thunk)
+  rootReducer,
+  applyMiddleware(thunk)
 );
 
 ReactDOM.render(

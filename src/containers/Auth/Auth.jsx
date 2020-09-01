@@ -6,9 +6,7 @@ import Input from "../../components/UI/Input/Input";
 import Button from "../../components/UI/Button/Button";
 import Loader from "../../components/Loader/Loader";
 import Section from "../../components/UI/section/Section";
-import axios from "../../axios";
 
-// import classes from './Auth.css';
 import * as actions from "../../store/actions/index";
 
 class Auth extends Component {
@@ -99,43 +97,11 @@ class Auth extends Component {
     };
     this.setState({ controls: updatedControls });
   };
-  onAuth = (email, password, isSignup) => {
-    console.log("onAuth trigger");
-
-    // dispatch(authStart());
-    const authData = {
-      username: email,
-      password: password,
-    };
-    let url = "api/profiles/";
-    if (!isSignup) {
-      url = "api/profiles/login/";
-    }
-    axios
-      .post(url, authData)
-      .then((response) => {
-        console.log(response);
-        this.setState((prevState) => {
-          return { ...this.prevState, token: response.data.token };
-        });
-        // const expirationDate = new Date(
-        //   new Date().getTime() + response.data.expiresIn * 1000
-        // );
-        // localStorage.setItem("token", response.data.idToken);
-        // localStorage.setItem("expirationDate", expirationDate);
-        // localStorage.setItem("userId", response.data.localId);
-        // dispatch(authSuccess(response.data.idToken, response.data.localId));
-        // dispatch(checkAuthTimeout(response.data.expiresIn));
-      })
-      .catch((err) => {
-        console.log(err);
-        // dispatch(authFail(err.response.data.error));
-      });
-  };
+ 
 
   submitHandler = (event) => {
     event.preventDefault();
-    this.onAuth(
+    this.props.onAuth(
       this.state.controls.email.value,
       this.state.controls.password.value,
       this.state.isSignup

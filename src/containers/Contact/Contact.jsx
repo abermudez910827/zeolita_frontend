@@ -6,8 +6,9 @@ import Loader from "../../components/Loader/Loader";
 import Input from "../../components/UI/Input/Input";
 import Button from "../../components/UI/Button/Button";
 import Container from "../../components/UI/Container/Container";
-import Row from "../../components/UI/Row/Row"
-import axios from "axios";
+import Row from "../../components/UI/Row/Row";
+import axios from "../../axios";
+import { updateObject } from "../../utilities/utility";
 
 class Contact extends Component {
   state = {
@@ -61,7 +62,7 @@ class Contact extends Component {
         valid: false,
         touched: false,
       },
-      message: {
+      messaje: {
         elementType: "textarea",
         elementConfig: {
           type: "text",
@@ -79,6 +80,7 @@ class Contact extends Component {
     },
     formIsValid: false,
     loading: false,
+    dataSend: false,
   };
 
   sendHandler = (event) => {
@@ -90,19 +92,37 @@ class Contact extends Component {
         formElementIdentifier
       ].value;
     }
-    const contact = {
-      contactData: formData,
-    };
+
     axios
-      .post("/contact", contact)
+      .post("/api/contact/", formData)
       .then((response) => {
         this.setState({ loading: false });
-        this.props.history.push("/");
+        this.setState({ dataSend: true });
+        this.clearData();
+        // this.props.history.push("/");
       })
       .catch((error) => {
         this.setState({ loading: false });
       });
   };
+
+  clearData() {
+    for (let item in this.state.contactForm) {
+      const updatedFormElement = updateObject(this.state.contactForm[item], {
+        value: "",
+        valid: false,
+        touched: false,
+      });
+      const updatedcontactForm = updateObject(this.state.contactForm, {
+        [item]: updatedFormElement,
+      });
+      this.setState({
+        contactForm: updatedcontactForm,
+        formIsValid: false,
+      });
+    }
+
+  }
 
   checkValidity(value, rules) {
     let isValid = true;
@@ -136,19 +156,22 @@ class Contact extends Component {
   }
 
   inputChangedHandler = (event, inputIdentifier) => {
-    const updatedcontactForm = {
-      ...this.state.contactForm,
-    };
-    const updatedFormElement = {
-      ...updatedcontactForm[inputIdentifier],
-    };
-    updatedFormElement.value = event.target.value;
-    updatedFormElement.valid = this.checkValidity(
-      updatedFormElement.value,
-      updatedFormElement.validation
+    const updatedFormElement = updateObject(
+      this.state.contactForm[inputIdentifier],
+      {
+        value: event.target.value,
+        valid: this.checkValidity(
+          event.target.value,
+          this.state.contactForm[inputIdentifier].validation
+        ),
+        touched: true,
+      }
     );
-    updatedFormElement.touched = true;
-    updatedcontactForm[inputIdentifier] = updatedFormElement;
+
+    const updatedcontactForm = updateObject(this.state.contactForm, {
+      [inputIdentifier]: updatedFormElement,
+    });
+   
 
     let formIsValid = true;
     for (let inputIdentifier in updatedcontactForm) {
@@ -171,7 +194,7 @@ class Contact extends Component {
     let form = (
       <form onSubmit={this.sendHandler}>
         {formElementsArray.map((formElement) => (
-          <Row key={formElement.id} >
+          <Row key={formElement.id}>
             <Input
               id={formElement.id}
               label={formElement.config.label}
@@ -194,6 +217,7 @@ class Contact extends Component {
         >
           Enviar
         </Button>
+        {this.state.dataSend? <h5>Se envio el formulario </h5>: null}
       </form>
     );
     if (this.state.loading) {

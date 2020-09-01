@@ -1,59 +1,68 @@
-import React, { useState } from "react";
+import React, { Component } from "react";
 import NavItem from "./NavItem/NavItem";
 import { Link } from "react-router-dom";
+import { connect } from "react-redux";
 
-const nav = React.memo((props) => {
-  const inputState = useState({ collapsedNav: false });
+class Nav extends Component {
+  state = {
+    collapsedNav: false,
+  };
 
-  const classToggle = ["collapse", "navbar-collapse"];
-  if (inputState[0].collapsedNav) {
-    classToggle.push("show");
-  }
+  render() {
+    const classToggle = ["collapse", "navbar-collapse"];
+    if (this.state.collapsedNav) {
+      classToggle.push("show");
+    }
 
-  return (
-    <header role="banner">
-      <nav className="navbar navbar-expand-lg navbar-dark bg-dark">
-        <div className="container-fluid">
-          <Link className="navbar-brand " to="/">
-            UEB Zeolita
-          </Link>
-          <button
-            className="navbar-toggler"
-            type="button"
-            onClick={(event) => {
-              inputState[1]({ collapsedNav: !inputState[0].collapsedNav });
-            }}
-            aria-label="Toggle navigation"
-          >
-            <span className="navbar-toggler-icon"></span>
-          </button>
+    return (
+      <header role="banner">
+        <nav className="navbar navbar-expand-lg navbar-dark bg-dark">
+          <div className="container-fluid">
+            <Link className="navbar-brand " to="/">
+              UEB Zeolita
+            </Link>
+            <button
+              className="navbar-toggler"
+              type="button"
+              onClick={(event) => {
+                this.setState({
+                  ...this.state,
+                  collapsedNav: !this.state.collapsedNav,
+                });
+              }}
+              aria-label="Toggle navigation"
+            >
+              <span className="navbar-toggler-icon"></span>
+            </button>
 
-          <div className={classToggle.join(" ")}>
-            <ul className="navbar-nav pl-md-5 ml-auto">
-              <NavItem link="/" exact>
-                Inicio
-              </NavItem>
-              <NavItem link="/about" >
-                Acerca de
-              </NavItem>
-              <NavItem link="/projects" >
-                Proyectos
-              </NavItem>
-              <NavItem link="/services" >
-                Servicios
-              </NavItem>
-              <NavItem link="/contact" >
-                Contacto
-              </NavItem>
-            </ul>
-            <div className="navbar-nav ml-auto">
-              <NavItem link="/login">Admin</NavItem>
+            <div className={classToggle.join(" ")}>
+              <ul className="navbar-nav pl-md-5 ml-auto">
+                <NavItem link="/" exact>
+                  Inicio
+                </NavItem>
+                <NavItem link="/about">Acerca de</NavItem>
+                <NavItem link="/projects">Proyectos</NavItem>
+                <NavItem link="/services">Servicios</NavItem>
+                <NavItem link="/contact">Contacto</NavItem>
+              </ul>
+              <div className="navbar-nav ml-auto">
+                {this.props.isAuthenticated ? (
+                  <NavItem link="/logout">Logout</NavItem>
+                ) : (
+                  <NavItem link="/login">Login</NavItem>
+                )}
+              </div>
             </div>
           </div>
-        </div>
-      </nav>
-    </header>
-  );
-});
+        </nav>
+      </header>
+    );
+  }
+}
 
-export default nav;
+const mapStateToProps = (state) => {
+  return { isAuthenticated: state.auth.token !== null };
+};
+
+
+export default connect(mapStateToProps, null)(Nav);
