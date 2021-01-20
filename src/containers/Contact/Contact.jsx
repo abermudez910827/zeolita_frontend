@@ -1,6 +1,6 @@
 import React, { Component } from "react";
 // import { divWithClassName  } from "react-bootstrap";
-import Section from "../../components/UI/section/Section";
+import Section from "../../components/UI/section/section";
 import InnerPage from "../../components/UI/innerPage/innerPage";
 import Loader from "../../components/Loader/Loader";
 import Input from "../../components/UI/Input/Input";
@@ -240,17 +240,17 @@ class Contact extends Component {
                   <div className="col-md-8 mx-auto contact-form-contact-info">
                     <p className="d-flex">
                       <span className="ion-ios-location icon mr-5"></span>
-                      <span>34 Street Name, City Name Here, United States</span>
+                      <span>Carretera de Maleza km dos y medio en la ciudad y municipio de Santa Clara, provincia de Villa Clara, Cuba</span>
                     </p>
 
                     <p className="d-flex">
                       <span className="ion-ios-telephone icon mr-5"></span>
-                      <span>+1 242 4942 290</span>
+                      <span>+53 42 459 202</span>
                     </p>
 
                     <p className="d-flex">
                       <span className="ion-android-mail icon mr-5"></span>
-                      <span>info@yourdomain.com</span>
+                      <span>geominera@geominera.cu</span>
                     </p>
                   </div>
                 </div>

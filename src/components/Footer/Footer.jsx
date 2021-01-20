@@ -8,24 +8,26 @@ const footer = () => {
           <div className="col-md-6 mb-5">
             <h3>Acerca de </h3>
             <p className="mb-5">
-              Far far away, behind the word mountains, far from the countries
-              Vokalia and Consonantia, there live the blind texts. .
+            La Empresa Geominera del Centro, perteneciente al Grupo Empresarial GeoMinSal, 
+            del Ministerio de la Industria Básica, brinda servicios mineros, reparación de
+             plantas de procesamiento de minerales, salineras y otros servicios a las mismas 
+             en el territorio central comprendido en las provincias Sancti Spíritus, Villa Clara y Cienfuegos.
             </p>
           </div>
           <div className="col-md-6 mb-5 pl-md-5">
             <h3>Información de contacto</h3>
             <ul className="list-unstyled footer-link">
               <li className="d-block">
-                <span className="d-block">Address:</span>
-                <span>34 Street Name, City Name Here, United States</span>
+                <span className="d-block">Dirección:</span>
+                <span>Carretera de Maleza km dos y medio en la ciudad y municipio de Santa Clara, provincia de Villa Clara, Cuba</span>
               </li>
               <li className="d-block">
-                <span className="d-block">Telephone:</span>
-                <span>+1 242 4942 290</span>
+                <span className="d-block">Telefóno:</span>
+                <span>+53 42 459 202</span>
               </li>
               <li className="d-block">
-                <span className="d-block">Email:</span>
-                <span>info@yourdomain.com</span>
+                <span className="d-block">Correo:</span>
+                <span>geominera@geominera.cu</span>
               </li>
             </ul>
           </div>

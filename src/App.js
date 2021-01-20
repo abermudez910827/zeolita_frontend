@@ -1,7 +1,7 @@
 import React, { Component, Suspense } from "react";
 import { Route, Switch, Redirect } from "react-router-dom";
 import Layout from "./hoc/Layout/Layout";
-import Index from "./components/Index/Index";
+import Index from "./components/index/index";
 import Loader from "./components/Loader/Loader";
 
 import Auth from "./containers/Auth/Auth";

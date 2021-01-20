@@ -5,7 +5,7 @@ import { Redirect } from "react-router-dom";
 import Input from "../../components/UI/Input/Input";
 import Button from "../../components/UI/Button/Button";
 import Loader from "../../components/Loader/Loader";
-import Section from "../../components/UI/section/Section";
+import Section from "../../components/UI/section/section";
 
 import * as actions from "../../store/actions/index";
 

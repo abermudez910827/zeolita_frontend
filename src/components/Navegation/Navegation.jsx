@@ -8,7 +8,17 @@ class Nav extends Component {
     collapsedNav: false,
   };
 
+  
+
   render() {
+
+    const handleNav=()=>{
+      this.setState({
+        ...this.state,
+        collapsedNav: !this.state.collapsedNav,
+      });
+    }
+
     const classToggle = ["collapse", "navbar-collapse"];
     if (this.state.collapsedNav) {
       classToggle.push("show");
@@ -19,17 +29,12 @@ class Nav extends Component {
         <nav className="navbar navbar-expand-lg navbar-dark bg-dark">
           <div className="container-fluid">
             <Link className="navbar-brand " to="/">
-              UEB Zeolita
+              Geominera del Centro
             </Link>
             <button
               className="navbar-toggler"
               type="button"
-              onClick={(event) => {
-                this.setState({
-                  ...this.state,
-                  collapsedNav: !this.state.collapsedNav,
-                });
-              }}
+              onClick={handleNav}
               aria-label="Toggle navigation"
             >
               <span className="navbar-toggler-icon"></span>
@@ -40,7 +45,7 @@ class Nav extends Component {
                 <NavItem link="/" exact>
                   Inicio
                 </NavItem>
-                <NavItem link="/about">Acerca de</NavItem>
+                <NavItem link="/about" >Acerca de</NavItem>
                 <NavItem link="/projects">Proyectos</NavItem>
                 <NavItem link="/services">Servicios</NavItem>
                 <NavItem link="/contact">Contacto</NavItem>
