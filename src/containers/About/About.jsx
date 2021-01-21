@@ -6,7 +6,6 @@ import "./About.css";
 // import Modal from "../../hoc/Modal/Modal"
 import InnerPage from "../../components/UI/innerPage/innerPage";
 import Section from "../../components/UI/section/section";
-import Block from "../../components/UI/section/block/block";
 import Person from "../../components/person/person";
 import Loader from "../../components/Loader/Loader";
 import * as actions from "../../store/actions";
@@ -26,14 +25,7 @@ class About extends Component {
 
 
   render() {
-
-    const handleModal=()=>{
-
-      this.setState({
-    
-    })
-
-    }
+  
     const handleShow=()=>{
       this.setState({
       modalTitle:'Objeto Social',
@@ -111,7 +103,7 @@ La inversión como tal consiste en la reposición de tres camiones de volteo, pa
         <InnerPage
           title="Acerca de "
           description="La Empresa Geominera del Centro, perteneciente al Grupo Empresarial GeoMinSal, del Ministerio de la Industria Básica, brinda servicios mineros, reparación de plantas de procesamiento de minerales, salineras y otros servicios a las mismas en el territorio central comprendido en las provincias Sancti Spíritus, Villa Clara y Cienfuegos."
-          img="url('images/industrial_hero_3.jpg')"
+          img="url('images/portada2.jpg')"
         />
         <Section>
         <div className="half d-lg-flex d-block">

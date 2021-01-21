@@ -229,7 +229,7 @@ class Contact extends Component {
         <InnerPage
           title="Contactenos"
           description="dejenos su opinion"
-          img="url('images/industrial_hero_3.jpg')"
+          img="url('images/portada3.jpg')"
         />
         <Section section>
           <Container>

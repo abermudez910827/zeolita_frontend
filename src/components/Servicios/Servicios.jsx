@@ -16,7 +16,7 @@ const servicios = () => {
           brinda servicios mineros, reparación de plantas de procesamiento de minerales, 
           salineras y otros servicios a las mismas en el territorio central comprendido 
           en las provincias Sancti Spíritus, Villa Clara y Cienfuegos.' 
-          img="url('images/industrial_hero_3.jpg')"/>
+          img="url('images/portada4.jpg')"/>
 
           <Section title='' >
               <div className="row align-items-stretch">

@@ -68,6 +68,6 @@ class Nav extends Component {
 const mapStateToProps = (state) => {
   return { isAuthenticated: state.auth.token !== null };
 };
-
+ 
 
 export default connect(mapStateToProps, null)(Nav);

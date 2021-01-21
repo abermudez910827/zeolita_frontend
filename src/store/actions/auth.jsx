@@ -57,7 +57,18 @@ export const auth = (email, password, isSignup) => {
         dispatch(authSuccess(response.data.token));
       })
       .catch((err) => {
-        dispatch(authFail(err.response.data.error));
+        if(err.response){
+          console.log(err.response)
+          if(err.response.data.non_field_errors){
+          dispatch(authFail(err.response.data.non_field_errors[0]));
+        }else if(err.response.data.detail){
+          dispatch(authFail(err.response.data.detail));
+
+        }
+
+        }else{
+            dispatch(authFail("Ocurrio un error al tratar de contactar con el servidor"));
+          }
       });
   };
 };

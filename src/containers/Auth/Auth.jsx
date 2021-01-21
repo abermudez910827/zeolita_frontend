@@ -1,12 +1,11 @@
 import React, { Component } from "react";
 import { connect } from "react-redux";
 import { Redirect } from "react-router-dom";
-
+import {Button} from "react-bootstrap"
 import Input from "../../components/UI/Input/Input";
-import Button from "../../components/UI/Button/Button";
+// import Button from "../../components/UI/Button/Button";
 import Loader from "../../components/Loader/Loader";
 import Section from "../../components/UI/section/section";
-
 import * as actions from "../../store/actions/index";
 
 class Auth extends Component {
@@ -42,7 +41,7 @@ class Auth extends Component {
       },
     },
     token: null,
-    isSignup: true,
+    isSignup: false,
   };
 
   componentDidMount() {
@@ -136,15 +135,15 @@ class Auth extends Component {
       />
     ));
 
-    if (this.props.loading) {
-      form = <Loader embebed />;
-    }
+    // if (this.props.loading) {
+    //   form = <Loader embebed />;
+    // }
 
 
     let errorMessage = null;
 
     if (this.props.error) {
-      errorMessage = <p>{this.props.error.message}</p>;
+      errorMessage = <p className="text-danger">{this.props.error}</p>;
     }
 
     let authRedirect = null;
@@ -153,24 +152,55 @@ class Auth extends Component {
     }
 
     return (
-      <Section title="Login">
+      <React.Fragment>
+      <div className="inner-page">
+        <div className="slider-item" >
+          <div className="container">
+            <div className="row slider-text align-items-center justify-content-center fadeInUp element-animated">
+              <div className="col-md-8 text-center col-sm-12 pt-5">
+                <h1 className="pt-5">
+                  <span>{
+                   !this.props.loading?
+                   
+                   this.state.isSignup ? "Registrar" : "Acceder"
+                  :"Espere"
+                  }</span>
+                </h1>
+                
+                <Section>
         {this.state.token ? (
           <div>Token: {this.state.token}</div>
         ) : (
+          !this.props.loading?
           <div className="form">
             {authRedirect}
-            {errorMessage}
-
+            <Button onClick={this.switchAuthModeHandler} variant="danger">
+              Cambiar a {this.state.isSignup ? "Acceder" : "Registrar" }
+            </Button>
             <form onSubmit={this.submitHandler}>
               {form}
-              <Button btnType="Success">SUBMIT</Button>
+            {errorMessage}
+
+              <br></br>
+              <Button onClick={this.submitHandler} variant="success">{this.state.isSignup ? "Registrar" : "Acceder"}</Button>
             </form>
-            <Button clicked={this.switchAuthModeHandler} btnType="Danger">
-              SWITCH TO {this.state.isSignup ? "SIGNIN" : "SIGNUP"}
-            </Button>
-          </div>
+            
+          </div>:
+           <div className="col-lg-12">
+           <Loader embebed />
+         </div>
+          
         )}
       </Section>
+                 
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+      
+
+      </React.Fragment>
     );
   }
 }
