@@ -6,9 +6,8 @@ import "./About.css";
 // import Modal from "../../hoc/Modal/Modal"
 import InnerPage from "../../components/UI/innerPage/innerPage";
 import Section from "../../components/UI/section/section";
-import Person from "../../components/person/person";
+import Person from "../../components/Person/Person";
 import Loader from "../../components/Loader/Loader";
-import * as actions from "../../store/actions";
 import ModalHeader from "react-bootstrap/esm/ModalHeader";
 
 class About extends Component {
@@ -17,13 +16,8 @@ class About extends Component {
         modalTitle:'',
         modalText:''
             }
-  componentDidMount() {
-    this.props.initPersons();
-  }
-    
   
-
-
+    
   render() {
   
     const handleShow=()=>{
@@ -198,9 +192,5 @@ const mapStateToProps = (state) => {
     errors: state.persons.errors,
   };
 };
-const mapDispatchToProps = (dispatch) => {
-  return {
-     initPersons: () => dispatch(actions.initPersons()),
-  };
-};
-export default connect(mapStateToProps, mapDispatchToProps)(About);
+ 
+export default connect(mapStateToProps)(About);

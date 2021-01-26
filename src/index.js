@@ -7,10 +7,12 @@ import thunk from "redux-thunk";
 import App from "./App";
 import * as serviceWorker from "./serviceWorker";
 import personsReducer from "./store/reducers/person";
+import entitysReducer from "./store/reducers/entity";
 import authReducer from "./store/reducers/auth";
 
 const rootReducer = combineReducers({
   persons: personsReducer,
+  entitys: entitysReducer,
   auth: authReducer,
 });
 

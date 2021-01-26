@@ -4,17 +4,17 @@ const footer = () => {
   return (
     <footer className="site-footer" role="contentinfo">
       <div className="container">
-        <div className="row mb-5">
-          <div className="col-md-6 mb-5">
+        <div className="row mb-2">
+          <div className="col-md-6 mb-2">
             <h3>Acerca de </h3>
-            <p className="mb-5">
+            <p className="mb-2">
             La Empresa Geominera del Centro, perteneciente al Grupo Empresarial GeoMinSal, 
             del Ministerio de la Industria Básica, brinda servicios mineros, reparación de
              plantas de procesamiento de minerales, salineras y otros servicios a las mismas 
              en el territorio central comprendido en las provincias Sancti Spíritus, Villa Clara y Cienfuegos.
             </p>
           </div>
-          <div className="col-md-6 mb-5 pl-md-5">
+          <div className="col-md-6 mb-2 pl-md-5">
             <h3>Información de contacto</h3>
             <ul className="list-unstyled footer-link">
               <li className="d-block">

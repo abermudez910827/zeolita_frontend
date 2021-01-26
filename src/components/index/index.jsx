@@ -1,17 +1,51 @@
 import React from "react";
 import { Carousel, CarouselItem } from "react-bootstrap";
 import Section from "../UI/section/section"
+import Thumbnail from "../UI/thumbnail/linkThumbnail"
+import Loader from "../Loader/Loader"
+import Testimonial from "../Testimonial/Testimonial"
+import BlogItem from "../Blog/BlogItem"
+import ArticuloItem from "../Articulo/ArticuloItem"
+import MensajeItem from "../Mensaje/MensajeItem"
+import { connect } from "react-redux";
+
 const Index = (props) => {
-  const style = {
-    backgroundImage: "url('images/portada.jpg')",
-  };
-  const style1 = {
-    backgroundImage: "url('images/portada1.jpg')",
-  };
+ 
+  
+  let entitys = props.entitys.map((entity) => {
+    return (
+      <Thumbnail key={entity.nro} url={entity.nro} title={entity.nombre} img={entity.foto_portada}/>
+       
+     
+    );
+  });
+
+  if (props.errors) {
+    entitys = (
+      <div className="col-lg-12 text-center">
+        <h1>
+          <span
+            className="ion-sad-outline text-danger "
+            aria-hidden="true"
+          ></span>
+        </h1>
+        <h5 className="text-danger">Ocurrio un error al cargar los datos</h5>
+      </div>
+    );
+  }
+
+  if (props.loading) {
+    entitys = (
+      <div className="col-lg-12">
+        <Loader embebed />
+      </div>
+    );
+  }
+
   return (
     <React.Fragment>
     <Carousel pause={false} indicators={false} fade={false} slide={false}>
-      <CarouselItem className="slider-item" style={style}>
+      <CarouselItem className="slider-item" style={{backgroundImage: "url('images/portada.jpg')"}}>
       
         <Carousel.Caption>
           <div className="container">
@@ -36,7 +70,7 @@ const Index = (props) => {
         </Carousel.Caption>
      
       </CarouselItem>
-      <CarouselItem className="slider-item" style={style1}>
+      <CarouselItem className="slider-item" style={{backgroundImage: "url('images/portada1.jpg')"}}>
       
       <Carousel.Caption>
         <div className="container">
@@ -63,54 +97,94 @@ const Index = (props) => {
     </CarouselItem>
     </Carousel>
 
+    <Section classSection={["section-subscribe","bg-danger"]} >
+      <MensajeItem title="Titulo del mensaje" text="Descripcion del mensaje" link={"/"}/>
+    </Section>
+
     <Section>
-    <div className="container">
-        <div className="row align-items-center mb-5">
-          <div className="col-lg-7 order-md-2">
-            <div className="scaling-image">
-              <div className="frame">
-                <img src="images/industrial_featured_img_1.jpg" alt="Free template by Free-Template.co" className="img-fluid" />
-                </div>
-          </div>
-          </div>
-          <div className="col-md-5 pr-md-5 mb-5">
-            <div className="block-41">
-              <h2 className="block-41-heading mb-5">Let's Build Together</h2>
-              <div className="block-41-text">
-                <p>Far far away, behind the word mountains, far from the countries Vokalia and Consonantia, there live the blind texts. Separated they live in Bookmarksgrove right at the coast of the Semantics, a large language ocean.</p>
-                <p><a href="#" className="readmore">Read More <span className="ion-android-arrow-dropright-circle"></span></a></p>
-              </div>
-            </div>
-          </div>
-          
-        </div>
-      </div>
+      <ArticuloItem link="/" img="images/img.jpg" title="Entidad de excelencia" text="Líderes en los servicios geotecnológicos, mineros, la perforación y la minería subterránea." />
       
     </Section>
 
     <Section light>
+    <ArticuloItem left={true} link="/" img="images/img1.jpg" title="Lídeles" text="Entidad con responsabilidad en la fabricación de cemento, piensos, fertilizantes, áridos y otros productos." />
+
+    </Section>
+   { props.entitys.length > 0 ?
+    <Section section>
       <div className="container">
-        <div className="row align-items-center mb-5">
-          <div className="col-lg-7 order-md-1">
-            <div className="scaling-image"><div className="frame"><img src="images/industrial_featured_img_2.jpg" alt="Free template by Free-Template.co" className="img-fluid"/></div></div>
+        <div className="row justify-content-center mb-5 element-animated">
+          <div className="col-md-8 text-center">
+            <h2 className=" heading mb-4">Entidades </h2>
+            {/* <p className="mb-5 lead">Far far away, behind the word mountains, far from the countries Vokalia and Consonantia, there live the blind texts. Separated they live in Bookmarksgrove right at the coast of the Semantics, a large language ocean.</p> */}
           </div>
-          <div className="col-md-5 pl-md-5 mb-5 order-md-2">
-            <div className="block-41">
-              <h2 className="block-41-heading mb-5">We'll handle any intercate custom design</h2>
-              <div className="block-41-text">
-                <p>A small river named Duden flows by their place and supplies it with the necessary regelialia. It is a paradisematic country, in which roasted parts of sentences fly into your mouth.</p>
-                <p><a href="#" className="readmore">Read More <span className="ion-android-arrow-dropright-circle"></span></a></p>
-              </div>
-            </div>
-          </div>
-          
         </div>
       </div>
+      <div className="container-fluid">
+        <div className="row no-gutters">
+        {entitys}
+        </div>      
+      </div>
+      </Section>:null}
+
+   
+    <Section className="section bg-light block-11">
+      <div className="container"> 
+        <div className="row justify-content-center mb-5">
+          <div className="col-md-8 text-center">
+            <h2 className=" heading mb-4">Testimonios</h2>
+          </div>
+        </div>
+        
+    <Carousel className="nonloop-block-11 owl-carousel owl-loaded owl-drag" interval={15000} pause={false} indicators={false} fade={false} slide={false}>
+      <CarouselItem className="item" >
+      
+      <Testimonial nombre="Alejandro Bermudez" cargo="Informatico" img="images/person_2.jpg" text="The Big Oxmox advised her not to do so, because there were thousands of bad Commas, wild Question Marks and devious Semikoli, but the Little Blind Text didn’t listen. She packed her seven versalia, put her initial into the belt and made herself on the way."/>
+   
+     
+      </CarouselItem>
+      <CarouselItem className="item" >
+      
+      <Testimonial nombre="John Smith" cargo="Informatico" img="images/person_3.jpg" text="The Big Oxmox advised her not to do so, because there were thousands of bad Commas, wild Question Marks and devious Semikoli, but the Little Blind Text didn’t listen. She packed her seven versalia, put her initial into the belt and made herself on the way."/>
+        
+   
+    </CarouselItem>
+    </Carousel>
+
+        </div>
     </Section>
+    
+    <section className="section blog">
+      <div className="container">
+
+        <div className="row justify-content-center mb-5 element-animated">
+          <div className="col-md-8 text-center">
+            <h2 className=" heading mb-4">Blog Posts</h2>
+            <p className="mb-5 lead">Far far away, behind the word mountains, far from the countries Vokalia and Consonantia, there live the blind texts. Separated they live in Bookmarksgrove right at the coast of the Semantics, a large language ocean.</p>
+          </div>
+        </div>
+
+        <div className="row">
+          <BlogItem key={1} link="/" img="images/industrial_blog_1.jpg" date="Feb 26th, 2018" title="How to handle any intercate custom design" text="Separated they live in Bookmarksgrove right at the coast of the Semantics, a large language ocean." />
+          <BlogItem key={2} link="/" img="images/industrial_blog_1.jpg" date="Feb 26th, 2018" title="How to handle any intercate custom design" text="Separated they live in Bookmarksgrove right at the coast of the Semantics, a large language ocean." />
+          <BlogItem key={3} link="/" img="images/industrial_blog_2.jpg" date="Feb 26th, 2018" title="How to handle any intercate custom design" text="Separated they live in Bookmarksgrove right at the coast of the Semantics, a large language ocean." />
+          <BlogItem key={4} link="/" img="images/industrial_blog_3.jpg" date="Feb 26th, 2018" title="How to handle any intercate custom design" text="Separated they live in Bookmarksgrove right at the coast of the Semantics, a large language ocean." />
+           
+        </div>
+      </div>
+    </section>
     
 
     </React.Fragment>
   );
 };
 
-export default Index;
+const mapStateToProps = (state) => {
+  return {
+    entitys: state.entitys.entitys,
+    loading: state.entitys.loading,
+    errors: state.entitys.errors,
+  };
+};
+export default connect(mapStateToProps, null)(Index);
+// export default Index;

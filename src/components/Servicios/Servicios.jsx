@@ -2,6 +2,7 @@ import React from "react";
 import InnerPage from "../UI/innerPage/innerPage";
 import Section from '../UI/section/section'
 import Block from "../../components/UI/section/block/block";
+import { Link } from "react-router-dom";
 
 const styleImg = {
     backgroundImage: "url('images/industrial_hero_1.jpg')",
@@ -37,7 +38,14 @@ const servicios = () => {
                               Brindar servicios mineros que contemplan las actividades de barrenación, 
                               voladura, extracción y acarreo de diferentes materias primas menas y otros 
                               materiales vinculados con la actividad minera, en moneda nacional y divisa.
-                </p>
+                             </p>
+                             <p >
+                               <Link to="/" className="btn btn-secondary  my-xl-2 col-md-6 d-md-flex">
+                                 <span className="ion ion-ribbon-b display-5 text-primary "></span>Contrato</Link>
+                             </p>
+                             <div>
+                             
+                             </div>
                           </div>
                       </div>
 

@@ -10,7 +10,7 @@ export const initPersons = () => {
         const cargos = response.data;
         dispatch(setCargos(response.data));
         axios
-          .get("/api/persons/persons")
+          .get("/api/persons")
           .then((response) => {
             const persons = response.data.map((person) => {
               const cargoId = person.cargo;

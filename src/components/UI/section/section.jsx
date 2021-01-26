@@ -1,7 +1,8 @@
 import React from "react";
 
 const section = (props) => {
-  const classSection = [""];
+
+  const classSection = props.classSection? props.classSection :[];
   if (props.section) {
     classSection.push("section");
   }

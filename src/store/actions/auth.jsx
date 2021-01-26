@@ -48,7 +48,7 @@ export const auth = (email, password, isSignup) => {
     };
     let url = "api/profiles/";
     if (!isSignup) {
-      url = "api/profiles/login/";
+      url = "api/login/";
     }
     axios
       .post(url, authData)
@@ -58,7 +58,6 @@ export const auth = (email, password, isSignup) => {
       })
       .catch((err) => {
         if(err.response){
-          console.log(err.response)
           if(err.response.data.non_field_errors){
           dispatch(authFail(err.response.data.non_field_errors[0]));
         }else if(err.response.data.detail){

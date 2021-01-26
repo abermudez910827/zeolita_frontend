@@ -14,6 +14,7 @@ const innerPage = (props) => {
                   <span>{props.title}</span>
                 </h1>
                 <p className="mb-5 w-75">{props.description}</p>
+                {props.loader}
               </div>
             </div>
           </div>
