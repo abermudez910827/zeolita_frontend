@@ -2,7 +2,7 @@ import React from "react";
 import { connect } from "react-redux";
 import InnerPage from "../../components/UI/innerPage/innerPage";
 import Section from "../../components/UI/section/section";
-import Loader from "../../components/Loader/Loader";
+import Loader from "../../components/UI/Loader/Loader";
 import Thumbnail from "../../components/UI/thumbnail/linkThumbnail"
 
 const Entitys = (props) =>{

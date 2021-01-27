@@ -1,16 +1,7 @@
-// Persons
-export const ADD_PERSON = "ADD_PERSON";
-export const SET_PERSONS = "SET_PERSONS";
-export const SET_CARGOS = "SET_CARGOS";
-export const FETCH_PERSONS_FAILED = "FETCH_PERSONS_FAILED";
-export const FETCH_CARGOS_FAILED = "FETCH_CARGOS_FAILED";
 
-
-// Entitys
-export const ADD_ENTITY = "ADD_ENTITY";
-export const SET_ENTITYS = "SET_ENTITYS";
-export const SET_SELECT_ENTITY = "SET_SELECT_ENTITY";
-export const FETCH_ENTITYS_FAILED = "FETCH_ENTITYS_FAILED";
+// SITE
+export const SET_DATASITE = "SET_DATASITE";
+export const FETCH_DATASITE_FAILED = "FETCH_DATASITE_FAILED";
 
 // Auth
 

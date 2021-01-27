@@ -1,6 +1,6 @@
 import React from "react";
-import Nav from "../../components/Navegation/Navegation";
-import Footer from "../../components/Footer/Footer";
+import Nav from "../../components/UI/Navegation/Navegation";
+import Footer from "../../components/UI/Footer/Footer";
 
 import "./style.css";
 // import "./Layout.css";
@@ -10,7 +10,7 @@ import "./animate.css";
 const layout = (props) => {
   return (
     <React.Fragment>
-      <Nav />
+      <Nav entidades={props.entidades} />
       {props.children}
       <Footer />
     </React.Fragment>

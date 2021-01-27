@@ -11,8 +11,9 @@ const section = (props) => {
   }
   return (
     <section className={classSection.join(" ")}>
-      {props.title ? (
+     
         <div className="container">
+          {props.title ? ( 
           <div className="row mb-5">
             <div className="col-12 text-center">
               <h2>{props.title}</h2>
@@ -23,10 +24,10 @@ const section = (props) => {
                 </p>
               ) : null}
             </div>
-          </div>
+          </div>) : null }
           {props.children}
         </div>
-      ) : props.children }
+      
       
     </section>
   );

@@ -1,9 +1,9 @@
 import React from 'react'
 
-const Testimonial =props=>{
+const TestimonialItem =props=>{
 
     return(
-            <div className="block-33 h-100">
+            <div className="bg-light block-33 h-100">
                 <div className="vcard d-flex mb-3">
                   <div className="image align-self-center"><img src={props.img} alt="Person here"/></div>
                   <div className="name-text align-self-center">
@@ -20,4 +20,4 @@ const Testimonial =props=>{
     )
 }
 
-export default Testimonial
+export default TestimonialItem

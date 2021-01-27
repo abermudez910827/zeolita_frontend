@@ -6,13 +6,11 @@ import { createStore, applyMiddleware, combineReducers } from "redux";
 import thunk from "redux-thunk";
 import App from "./App";
 import * as serviceWorker from "./serviceWorker";
-import personsReducer from "./store/reducers/person";
-import entitysReducer from "./store/reducers/entity";
+import siteReducer from "./store/reducers/site";
 import authReducer from "./store/reducers/auth";
 
 const rootReducer = combineReducers({
-  persons: personsReducer,
-  entitys: entitysReducer,
+  site: siteReducer,
   auth: authReducer,
 });
 

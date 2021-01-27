@@ -8,13 +8,7 @@ class Nav extends Component {
 
   state = {
     collapsedNav: false,
-    entitys:[
-      {
-        id:1,
-        link:"/entitys/2",
-        name:'UEB Zeolita'
-      }
-    ]
+    
   };
 
  
@@ -22,8 +16,7 @@ class Nav extends Component {
   
 
   render() {
-
-    let entitysLoaded = this.props.entitys.map((entity) => {
+    let entitysLoaded = this.props.entidades.map((entity) => {
       return (
         {
           key:entity.nro,
@@ -38,22 +31,14 @@ class Nav extends Component {
     });
     
     let entitysNav = (
-      this.props.entitys.length > 0 ?
+      this.props.entidades.length > 0 ?
       <NavItem link="/entitys" dropdown={true} entitys={entitysLoaded}>Entidades</NavItem>
       :
       null
       // <NavItem link="/entitys">Entidades <span className="ion ion-information-circled text-secondary" alt="No existen entidades"></span></NavItem>
     );
 
-    if (this.props.errors) {
-      entitysNav = null
-    }
-
-    if (this.props.loading) {
-      entitysNav = (
-        <NavItem link="/entitys">Entidades <span className="ion ion-load-b text-secundary"></span></NavItem>
-      );
-    }
+   
 
     const handleNav=()=>{
       this.setState({
@@ -112,9 +97,7 @@ class Nav extends Component {
 const mapStateToProps = (state) => {
   return {
     isAuthenticated: state.auth.token !== null,
-    entitys: state.entitys.entitys,
-    loading: state.entitys.loading,
-    errors: state.entitys.errors,
+    
   };
 };
 
