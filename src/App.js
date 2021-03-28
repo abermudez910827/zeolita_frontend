@@ -6,22 +6,24 @@ import * as actions from "./store/actions";
 import Layout from "./hoc/Layout/Layout";
 import Index from "./components/Index/Index";
 import Loader from "./components/UI/Loader/Loader";
-import Entity from "./components/Entitys/Entity/Entity";
+import Error from "./components/UI/Error/Error";
+import Entidad from "./components/Entidades/Entidad/Entidad";
 import BlogFull from "./components/Blogs/BlogFull";
 import Auth from "./containers/Auth/Auth";
 import Logout from "./containers/Auth/Logout/Logout";
 
-const About = React.lazy(() => import("./containers/About/About"));
+const About = React.lazy(() => import("./components/About/About"));
 const Services = React.lazy(() => import("./components/Servicios/Servicios"));
 const Blogs = React.lazy(() => import("./components/Blogs/Blogs"));
 const Contact = React.lazy(() => import("./containers/Contact/Contact"));
-const Entitys = React.lazy(() => import("./components/Entitys/Entitys"));
+const Entidades = React.lazy(() => import("./components/Entidades/Entidades"));
 
-// const Entity = React.lazy(() => import("./containers/Entitys/Entity/Entity"));
+// const Entidad = React.lazy(() => import("./containers/Entidades/Entidad/Entidad"));
 
 class App extends Component {
   
   componentDidMount() {
+    this.props.authCheckState();
     this.props.initDataSite();
   }
 
@@ -30,7 +32,7 @@ class App extends Component {
   render() {
     let page =(
       
-    <Layout entidades={this.props.siteData.entidades} >
+    <Layout siteData={this.props.siteData} >
       <Switch>
         <Route path="/login" component={Auth} />
         <Route path="/logout" component={Logout} />
@@ -38,7 +40,10 @@ class App extends Component {
           path="/services"
           render={() => (
             <Suspense fallback={<Loader />}>
-              <Services />
+              <Services
+              entidad={this.props.siteData.entidad_pric} 
+              
+              />
             </Suspense>
           )}
         />
@@ -46,7 +51,7 @@ class App extends Component {
           path="/contact"
           render={() => (
             <Suspense fallback={<Loader />}>
-              <Contact />
+              <Contact entidad={this.props.siteData.entidad_pric}  />
             </Suspense>
           )}
         />
@@ -55,7 +60,7 @@ class App extends Component {
           path="/blogs"
           render={() => (
             <Suspense fallback={<Loader />}>
-              <Blogs blogs={this.props.siteData.entidad_pric.blogs}/>
+              <Blogs blogs={this.props.siteData.entidad_pric.blogs} entidad_img={this.props.siteData.entidad_pric.foto_portada} />
             </Suspense>
           )}
         />
@@ -70,13 +75,18 @@ class App extends Component {
           path="/entitys"
           render={() => (
             <Suspense fallback={<Loader />}>
-              <Entitys />
+              <Entidades
+            entidades={this.props.siteData.entidades} 
+            entidad_img={this.props.siteData.entidad_pric.foto_portada} 
+            />
             </Suspense>
           )}
         />
          <Route
           path="/entitys/:nro"
-          component={Entity}
+          render={(props) => (
+            <Entidad props={props} entidades={this.props.siteData.entidades}/>
+        )}
         />
         {/* <Route path="/projects" component={Index} /> */}
         <Route
@@ -106,6 +116,13 @@ class App extends Component {
     if (this.props.loading) {
         page= <Loader fullscreen={true} />
          }
+
+    if (this.props.errors) {
+
+    page= <Error fullscreen={true} mensaje={"Upps ocurrió un error inesperado"} error={String(this.props.errors)} />
+    
+      }
+    
     
     
     return (
@@ -125,6 +142,7 @@ const mapStateToProps = (state) => {
 const mapDispatchToProps = (dispatch) => {
   return {
      initDataSite: () => dispatch(actions.initDataSite()),
+     authCheckState: () => dispatch(actions.authCheckState()),
   };
 };
 export default connect(mapStateToProps, mapDispatchToProps)(App);

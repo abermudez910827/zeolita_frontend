@@ -1,2 +1,2 @@
 export { initDataSite ,} from "./site";
-export { auth, logout, setAuthRedirectPath, authCheckState } from "./auth";
+export { auth,register, fetchOpinion,clearData,sendOpinion,editOpinion,sendOpinionFailed,inputChangedHandler,inputOpinionChangedHandler,switchAuthModeHandler, logout, setAuthRedirectPath, authCheckState } from "./auth";

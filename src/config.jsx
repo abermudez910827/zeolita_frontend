@@ -1,2 +1,2 @@
-export const ServerUrl = "http://localhost:8000";
+export const ServerUrl = "http://192.168.1.100:8000";
  

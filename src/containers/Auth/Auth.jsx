@@ -9,117 +9,49 @@ import Section from "../../components/UI/section/section";
 import * as actions from "../../store/actions/index";
 
 class Auth extends Component {
-  state = {
-    controls: {
-      email: {
-        elementType: "input",
-        elementConfig: {
-          type: "email",
-          placeholder: "Mail Address",
-        },
-        value: "",
-        validation: {
-          required: true,
-          isEmail: true,
-        },
-        valid: false,
-        touched: false,
-      },
-      password: {
-        elementType: "input",
-        elementConfig: {
-          type: "password",
-          placeholder: "Password",
-        },
-        value: "",
-        validation: {
-          required: true,
-          minLength: 6,
-        },
-        valid: false,
-        touched: false,
-      },
-    },
-    token: null,
-    isSignup: false,
-  };
-
+ 
   componentDidMount() {
-    if (!this.props.buildingBurger && this.props.authRedirectPath !== "/") {
+    this.props.clearData()
+    if (this.props.authRedirectPath !== "/") {
       this.props.onSetAuthRedirectPath();
     }
   }
 
-  checkValidity(value, rules) {
-    let isValid = true;
-    if (!rules) {
-      return true;
-    }
 
-    if (rules.required) {
-      isValid = value.trim() !== "" && isValid;
-    }
-
-    if (rules.minLength) {
-      isValid = value.length >= rules.minLength && isValid;
-    }
-
-    if (rules.maxLength) {
-      isValid = value.length <= rules.maxLength && isValid;
-    }
-
-    if (rules.isEmail) {
-      const pattern = /[a-z0-9!#$%&'*+/=?^_`{|}~-]+(?:\.[a-z0-9!#$%&'*+/=?^_`{|}~-]+)*@(?:[a-z0-9](?:[a-z0-9-]*[a-z0-9])?\.)+[a-z0-9](?:[a-z0-9-]*[a-z0-9])?/;
-      isValid = pattern.test(value) && isValid;
-    }
-
-    if (rules.isNumeric) {
-      const pattern = /^\d+$/;
-      isValid = pattern.test(value) && isValid;
-    }
-
-    return isValid;
-  }
-
-  inputChangedHandler = (event, controlName) => {
-    const updatedControls = {
-      ...this.state.controls,
-      [controlName]: {
-        ...this.state.controls[controlName],
-        value: event.target.value,
-        valid: this.checkValidity(
-          event.target.value,
-          this.state.controls[controlName].validation
-        ),
-        touched: true,
-      },
-    };
-    this.setState({ controls: updatedControls });
-  };
- 
 
   submitHandler = (event) => {
     event.preventDefault();
+    this.props.isSignup? 
+    this.props.onResgister(
+      this.props.registerControls.name.value,
+      this.props.registerControls.last_name.value,
+      this.props.registerControls.email.value,
+      this.props.registerControls.password.value,
+    )
+    :
     this.props.onAuth(
-      this.state.controls.email.value,
-      this.state.controls.password.value,
-      this.state.isSignup
-    );
+      this.props.loginControls.email.value,
+      this.props.loginControls.password.value,
+    )
   };
 
-  switchAuthModeHandler = () => {
-    this.setState((prevState) => {
-      return { isSignup: !prevState.isSignup };
-    });
-  };
 
   render() {
     const formElementsArray = [];
-    for (let key in this.state.controls) {
-      formElementsArray.push({
-        id: key,
-        config: this.state.controls[key],
-      });
+    if(this.props.isSignup){
+      for (let key in this.props.registerControls) {
+        formElementsArray.push({
+          id: key,
+          config: this.props.registerControls[key],
+        });
+      }
+    }else{
+      for (let key in this.props.loginControls) {
+        formElementsArray.push({
+          id: key,
+          config: this.props.loginControls[key],
+        });
+      }
     }
 
     let form = formElementsArray.map((formElement) => (
@@ -129,22 +61,13 @@ class Auth extends Component {
         elementConfig={formElement.config.elementConfig}
         value={formElement.config.value}
         invalid={!formElement.config.valid}
+        error={formElement.config.error}
         shouldValidate={formElement.config.validation}
         touched={formElement.config.touched}
-        changed={(event) => this.inputChangedHandler(event, formElement.id)}
+        changed={(event) => this.props.inputChangedHandler(event, formElement.id)}
       />
     ));
 
-    // if (this.props.loading) {
-    //   form = <Loader embebed />;
-    // }
-
-
-    let errorMessage = null;
-
-    if (this.props.error) {
-      errorMessage = <p className="text-danger">{this.props.error}</p>;
-    }
 
     let authRedirect = null;
     if (this.props.isAuthenticated) {
@@ -154,7 +77,7 @@ class Auth extends Component {
     return (
       <React.Fragment>
       <div className="inner-page">
-        <div className="slider-item" >
+        <div className="slider-item" style={{    height: 'calc(257vh - 234px)'}}>
           <div className="container">
             <div className="row slider-text align-items-center justify-content-center fadeInUp element-animated">
               <div className="col-md-8 text-center col-sm-12 pt-5">
@@ -162,27 +85,27 @@ class Auth extends Component {
                   <span>{
                    !this.props.loading?
                    
-                   this.state.isSignup ? "Registrar" : "Acceder"
+                   this.props.isSignup ? "Registrar" : "Acceder"
                   :"Espere"
                   }</span>
                 </h1>
                 
                 <Section>
-        {this.state.token ? (
-          <div>Token: {this.state.token}</div>
+        {this.props.token ? (
+          <div>Token: {this.props.token}</div>
         ) : (
           !this.props.loading?
           <div className="form">
             {authRedirect}
-            <Button onClick={this.switchAuthModeHandler} variant="danger">
-              Cambiar a {this.state.isSignup ? "Acceder" : "Registrar" }
+            <Button onClick={()=>this.props.switchAuthModeHandler()} variant="danger">
+              Cambiar a {this.props.isSignup ? "Acceder" : "Registrar" }
             </Button>
             <form onSubmit={this.submitHandler}>
               {form}
-            {errorMessage}
+              {/* {errorMessage} */}
 
               <br></br>
-              <Button onClick={this.submitHandler} variant="success">{this.state.isSignup ? "Registrar" : "Acceder"}</Button>
+              <Button onClick={this.submitHandler} variant="success">{this.props.isSignup ? "Registrar" : "Acceder"}</Button>
             </form>
             
           </div>:
@@ -205,20 +128,29 @@ class Auth extends Component {
   }
 }
 
-const mapStateToProps = (state) => {
+const mapStateToProps = (props) => {
   return {
-    loading: state.auth.loading,
-    error: state.auth.error,
-    isAuthenticated: state.auth.token !== null,
-    authRedirectPath: state.auth.authRedirectPath,
+    loading: props.auth.loading,
+    error: props.auth.error,
+    isSignup: props.auth.isSignup,
+    loginControls:props.auth.loginControls,
+    registerControls:props.auth.registerControls,
+    isAuthenticated: props.auth.token !== null,
+    authRedirectPath: props.auth.authRedirectPath,
   };
 };
 
 const mapDispatchToProps = (dispatch) => {
   return {
     onAuth: (email, password, isSignup) =>
-      dispatch(actions.auth(email, password, isSignup)),
+      dispatch(actions.auth(email, password)),
+    onResgister:(email,name,last_name, password)=>
+      dispatch(actions.register(email,name,last_name, password)),
     onSetAuthRedirectPath: () => dispatch(actions.setAuthRedirectPath("/")),
+    inputChangedHandler: (event, controlName)=>dispatch(actions.inputChangedHandler(event, controlName)),
+    switchAuthModeHandler:()=>dispatch(actions.switchAuthModeHandler()),
+    clearData:()=>dispatch(actions.clearData()),
+
   };
 };
 

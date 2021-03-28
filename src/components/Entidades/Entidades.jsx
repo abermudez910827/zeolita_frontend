@@ -1,13 +1,12 @@
 import React from "react";
-import { connect } from "react-redux";
-import InnerPage from "../../components/UI/innerPage/innerPage";
-import Section from "../../components/UI/section/section";
-import Loader from "../../components/UI/Loader/Loader";
-import Thumbnail from "../../components/UI/thumbnail/linkThumbnail"
+import InnerPage from "../UI/innerPage/innerPage";
+import Section from "../UI/section/section";
+import Loader from "../UI/Loader/Loader";
+import Thumbnail from "../UI/thumbnail/linkThumbnail"
 
 const Entitys = (props) =>{
 
-  let entitys = props.entitys.map((entity) => {
+  let entitys = props.entidades.map((entity) => {
     return (
       <Thumbnail key={entity.nro} url={entity.nro} title={entity.nombre} img={entity.foto_portada}/>
            
@@ -17,7 +16,7 @@ const Entitys = (props) =>{
   let page= (
     <InnerPage
     title="Entidades"
-    img="url('../images/portada2.jpg')"
+    img={`url(${props.entidad_img})`}
     />
        )
 
@@ -25,7 +24,7 @@ const Entitys = (props) =>{
     page=(
       <InnerPage
         title="Error al cargar las entidades"
-        img="url('../images/portada2.jpg')"
+        img={`url(${props.entidad_img})`}
       /> 
       )
     entitys = (
@@ -50,15 +49,10 @@ const Entitys = (props) =>{
       loader={<div className="col-lg-12">
       <Loader embebed />
     </div>}
-      img="url('images/portada2.jpg')"
+      img={`url(${props.entidad_img})`}
       />
          )
-
-    // entitys = (
-    //   <div className="col-lg-12">
-    //     <Loader embebed />
-    //   </div>
-    // );
+ 
   }
 
     
@@ -80,14 +74,4 @@ const Entitys = (props) =>{
     }
 
 
-
-const mapStateToProps = (state) => {
-    return {
-      entitys: state.entitys.entitys,
-      loading: state.entitys.loading,
-      errors: state.entitys.errors,
-    };
-  };
-
-
-export default connect(mapStateToProps,null)(Entitys);
+export default Entitys;

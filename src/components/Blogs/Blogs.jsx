@@ -18,7 +18,7 @@ const Blog = props =>{
     return(
         <React.Fragment>
             <InnerPage title='Blogs' 
-          img="url('images/portada.jpg')"/>
+          img={`url(${props.entidad_img})`}/>
             <Section>
               {blogs}                
             </Section>

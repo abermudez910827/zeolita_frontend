@@ -20,6 +20,7 @@ const block = (props) => {
         <div className="media-body">
           <h3 className="heading">{props.title}</h3>
           <p>{props.description}</p>
+          
            </div>
       </div>
     </div>

@@ -48,7 +48,7 @@ const Index = (props) => {
    <Testimonial testimonios={props.testimonios}/>
 
    
-       <section className="section blog">
+    <section className="section blog">
       <div className="container">
 
         <div className="row justify-content-center mb-5 element-animated">

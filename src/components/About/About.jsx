@@ -3,9 +3,9 @@ import React from "react";
 // import ModalHeader from "react-bootstrap/esm/ModalHeader";
 
 import "./About.css";
-import InnerPage from "../../components/UI/innerPage/innerPage";
-import Section from "../../components/UI/section/section";
-import Personas from "../../components/UI/Personas/Personas";
+import InnerPage from "../UI/innerPage/innerPage";
+import Section from "../UI/section/section";
+import Personas from "../UI/Personas/Personas";
 
 const About = props=> {
   
@@ -14,8 +14,8 @@ const About = props=> {
       <React.Fragment>
         <InnerPage
           title="Acerca de "
-          description="La Empresa Geominera del Centro, perteneciente al Grupo Empresarial GeoMinSal, del Ministerio de la Industria Básica, brinda servicios mineros, reparación de plantas de procesamiento de minerales, salineras y otros servicios a las mismas en el territorio central comprendido en las provincias Sancti Spíritus, Villa Clara y Cienfuegos."
-          img="url('images/portada2.jpg')"
+          description={props.entidad.descripcion}
+          img={`url(${props.entidad.foto_portada})`}
         />
         <Section>
         <div className="half d-lg-flex d-block">

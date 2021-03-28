@@ -57,7 +57,7 @@ class Nav extends Component {
         <nav className="navbar navbar-expand-lg navbar-dark bg-dark">
           <div className="container-fluid">
             <Link className="navbar-brand " to="/">
-              Geominera del Centro
+              Geominera
             </Link>
             <button
               className="navbar-toggler"

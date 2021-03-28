@@ -10,12 +10,13 @@ export const initDataSite = () => {
               dispatch(setDataSite(response.data));
             })
             .catch((error) => {
-              console.log(error);
               dispatch(fetchDataSiteFailed(error));
             });
+          
        
     };
   };
+ 
 
 
   export const setDataSite = (dataSite) => {
@@ -31,3 +32,5 @@ export const initDataSite = () => {
       error: error,
     };
   };
+
+  

@@ -62,6 +62,7 @@ const input = (props) => {
     <div className={props.divclass}>
       <label htmlFor={props.id}>{props.label}</label>
       {inputElement}
+      {props.error? <p className="text-danger">{props.error}</p> : null}
     </div>
   );
 };

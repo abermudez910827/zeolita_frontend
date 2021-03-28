@@ -5,8 +5,12 @@ const instance = axios.create({
     baseURL: ServerUrl
 });
 
-instance.defaults.headers.common['Authorization'] = 'AUTH TOKEN FROM INSTANCE';
-instance.defaults.headers.common['Authorization'] = 'AUTH TOKEN';
+// instance.defaults.headers.common['Authorization'] = 'AUTH TOKEN FROM INSTANCE';
+const token =localStorage.getItem("token")
+if(token){
+    instance.defaults.headers.common['Authorization'] = 'Token ' + token;
+}
+
 instance.defaults.headers.post['Content-Type'] = 'application/json';
 
 instance.interceptors.request.use(request => {

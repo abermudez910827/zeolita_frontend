@@ -5114,6 +5114,11 @@ button.bg-dark:focus {
 .d-table-cell {
   display: table-cell !important; }
 
+.d-grid {
+    display: -webkit-box !important;
+    display: -ms-flexbox !important;
+    display: grid !important; }
+
 .d-flex {
   display: -webkit-box !important;
   display: -ms-flexbox !important;
@@ -7611,11 +7616,19 @@ header {
     bottom: -30px !important;
     position: relative; }
 
+.inner-page .login {
+      position: relative; }
+  
+.inner-page .login .slider-text {
+        color: #fff;
+        }
 .inner-page .slider-item {
   position: relative;
   height: calc(50vh - 117px);
   min-height: 550px; }
-  .inner-page .slider-item .slider-text {
+
+
+.inner-page .slider-item .slider-text {
     color: #fff;
     height: calc(50vh - 117px);
     min-height: 550px; }

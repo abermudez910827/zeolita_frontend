@@ -10,9 +10,9 @@ import "./animate.css";
 const layout = (props) => {
   return (
     <React.Fragment>
-      <Nav entidades={props.entidades} />
+      <Nav entidades={props.siteData.entidades} />
       {props.children}
-      <Footer />
+      <Footer entidad={props.siteData.entidad_pric} />
     </React.Fragment>
   );
 };
